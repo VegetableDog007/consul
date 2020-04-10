@@ -468,6 +468,16 @@
   mask-image: $download-svg;
 }
 
+%with-earth-icon {
+  @extend %with-icon;
+  background-image: $earth-svg;
+}
+%with-earth-mask {
+  @extend %with-mask;
+  -webkit-mask-image: $earth-svg;
+  mask-image: $earth-svg;
+}
+
 %with-edit-icon {
   @extend %with-icon;
   background-image: $edit-svg;
