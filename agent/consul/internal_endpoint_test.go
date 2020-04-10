@@ -2,10 +2,11 @@ package consul
 
 import (
 	"encoding/base64"
-	"github.com/hashicorp/consul/sdk/testutil/retry"
 	"os"
 	"strings"
 	"testing"
+
+	"github.com/hashicorp/consul/sdk/testutil/retry"
 
 	"github.com/hashicorp/consul/acl"
 	"github.com/hashicorp/consul/agent/structs"
@@ -766,6 +767,10 @@ func TestInternal_TerminatingGatewayServices(t *testing.T) {
 				CAFile:      "api/ca.crt",
 				CertFile:    "api/client.crt",
 				KeyFile:     "api/client.key",
+				RaftIndex: structs.RaftIndex{
+					CreateIndex: 16,
+					ModifyIndex: 16,
+				},
 			},
 			{
 				Service:     structs.NewServiceID("db", nil),
@@ -774,6 +779,10 @@ func TestInternal_TerminatingGatewayServices(t *testing.T) {
 				CAFile:      "",
 				CertFile:    "",
 				KeyFile:     "",
+				RaftIndex: structs.RaftIndex{
+					CreateIndex: 16,
+					ModifyIndex: 16,
+				},
 			},
 			{
 				Service:     structs.NewServiceID("redis", nil),
@@ -782,6 +791,10 @@ func TestInternal_TerminatingGatewayServices(t *testing.T) {
 				CAFile:      "ca.crt",
 				CertFile:    "client.crt",
 				KeyFile:     "client.key",
+				RaftIndex: structs.RaftIndex{
+					CreateIndex: 16,
+					ModifyIndex: 16,
+				},
 			},
 		}
 		assert.Equal(r, expect, resp.Services)
@@ -964,11 +977,19 @@ service "gateway" {
 				Service:     structs.NewServiceID("db", nil),
 				Gateway:     structs.NewServiceID("gateway", nil),
 				GatewayKind: structs.ServiceKindTerminatingGateway,
+				RaftIndex: structs.RaftIndex{
+					CreateIndex: 19,
+					ModifyIndex: 19,
+				},
 			},
 			{
 				Service:     structs.NewServiceID("db_replica", nil),
 				Gateway:     structs.NewServiceID("gateway", nil),
 				GatewayKind: structs.ServiceKindTerminatingGateway,
+				RaftIndex: structs.RaftIndex{
+					CreateIndex: 19,
+					ModifyIndex: 19,
+				},
 			},
 		}
 		assert.Equal(r, expect, resp.Services)
