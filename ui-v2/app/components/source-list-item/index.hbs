@@ -1,0 +1,7 @@
+{{#let (service/external-source item) as |externalSource| }}
+  {{#if externalSource }}
+    <li class="source-list-item source-{{externalSource}}">
+      <span>Synced from {{externalSource}}</span>
+    </li>
+  {{/if}}
+{{/let}}
