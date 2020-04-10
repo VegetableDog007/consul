@@ -2,7 +2,7 @@ export default function(visitable, clickable, text, attribute, collection, page,
   const service = {
     name: text('a span:nth-child(2)'),
     service: clickable('a'),
-    externalSource: attribute('data-test-external-source', '[data-test-external-source]'),
+    externalSource: text('.source-list-item'),
   };
   return {
     visit: visitable('/:dc/services'),

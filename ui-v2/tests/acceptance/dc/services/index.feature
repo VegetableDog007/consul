@@ -30,9 +30,9 @@ Feature: dc / services / index: List Services
     Then I see 4 service models
     And I see externalSource on the services like yaml
     ---
-    - consul
-    - nomad
-    - terraform
-    - kubernetes
+    - Synced from consul
+    - Synced from nomad
+    - Synced from terraform
+    - Synced from kubernetes
     ---
 
